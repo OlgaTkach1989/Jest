@@ -1,0 +1,23 @@
+name: ci-test
+
+
+on: [ push, pull_request ]
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Code auschecken
+      uses: github-actions/checkout@v5
+    - name: NodeJS installiren
+      uses: github-actions/setup-node@v5
+      with:
+        node-version: 22
+    - name: Abhängigkeiten installieren
+      run: npm ci
+    - name: stff testen
+      run: npm run test:coverage
+    - name: coverage report als Artefakt speichern
+      uses: github-actions/upload-artifact@v4
+      with:
+        name: coverage-report
+        path: coverage/
