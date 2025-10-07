@@ -1,0 +1,28 @@
+name: ci-test
+
+on: [push, pull_request]
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code auschecken
+        uses: actions/checkout@v4
+
+      - name: NodeJS installieren
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Abhängigkeiten installieren
+        run: npm ci
+
+      - name: Tests mit Coverage
+        run: npm run test:coverage
+
+      - name: Coverage als Artefakt speichern
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
