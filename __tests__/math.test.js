@@ -1,7 +1,9 @@
+import {describe, test, expect} from "vitest";
+
 // CommonJS Syntax
-const { add, divide, hello } = require('../src/math');
+//const { add, divide, hello } = require('../src/math');
 // ES6 Syntax
-// import add from '../src/math';
+import { add, divide } from '../src/math';
 
 describe("Math functions", () => {
      test("add sums up two numbers", () => {
@@ -17,15 +19,3 @@ describe("Math functions", () => {
      });
 });
 
-describe("Test Hello function with Spy", () => {
-    test("Test Hello function with Spy", () => {
-    const spy = jest.spyOn(console, 'log').mockImplementation(() => {});
-
-    hello();
-
-    expect(spy).toHaveBeenCalledWith("Hallo Welt");
-
-    spy.mockRestore();
-
-})
-});

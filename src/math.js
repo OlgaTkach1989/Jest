@@ -16,6 +16,6 @@ function hello(){
 }
 
 // ES6 Syntax:
-// export { add, divide }
+export { add, divide, hello }
 // ältere CommonJS Syntax
-module.exports = { add, divide, hello }
+//module.exports = { add, divide, hello }
